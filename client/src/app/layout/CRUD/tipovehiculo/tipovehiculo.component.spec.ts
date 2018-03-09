@@ -1,0 +1,23 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TipoVehiculoComponent } from './tipovehiculo.component';
+
+describe('TipoVehiculoComponent', () => {
+   let component: TipoVehiculoComponent;
+   let fixture: ComponentFixture<TipoVehiculoComponent>;
+
+   beforeEach(async(() => {
+      TestBed.configureTestingModule({
+         declarations: [ TipoVehiculoComponent ]
+      }).compileComponents();
+   }));
+
+   beforeEach(() => {
+      fixture = TestBed.createComponent(TipoVehiculoComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+   });
+
+   it('should create', () => {
+      expect(component).toBeTruthy();
+   });
+});
