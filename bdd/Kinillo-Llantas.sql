@@ -219,7 +219,22 @@ CREATE TABLE ImpuestosInsumoVenta (
 
 CREATE TABLE ProductoVenta (
     id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(100) NULL,
+    precio DOUBLE NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ProductoCompra (
+    id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(100) NULL,
+    precio DOUBLE NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE LlantaVenta (
+    id INT NOT NULL AUTO_INCREMENT,
     idLlanta INT NULL,
+    serie VARCHAR(100) NULL,
     precio DOUBLE NULL,
     PRIMARY KEY (id)
 );
@@ -238,9 +253,10 @@ CREATE TABLE InsumoVenta (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE ProductoCompra (
+CREATE TABLE LlantaCompra (
     id INT NOT NULL AUTO_INCREMENT,
     idLlanta INT NULL,
+    serie VARCHAR(100) NULL,
     precio DOUBLE NULL,
     PRIMARY KEY (id)
 );

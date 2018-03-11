@@ -5,9 +5,9 @@ class Controlador_productocompra extends Controlador_Base
 {
    function crear($args)
    {
-      $productocompra = new ProductoCompra($args["id"],$args["idLlanta"],$args["precio"]);
-      $sql = "INSERT INTO ProductoCompra (idLlanta,precio) VALUES (?,?);";
-      $parametros = array($productocompra->idLlanta,$productocompra->precio);
+      $productocompra = new ProductoCompra($args["id"],$args["descripcion"],$args["precio"]);
+      $sql = "INSERT INTO ProductoCompra (descripcion,precio) VALUES (?,?);";
+      $parametros = array($productocompra->descripcion,$productocompra->precio);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_productocompra extends Controlador_Base
 
    function actualizar($args)
    {
-      $productocompra = new ProductoCompra($args["id"],$args["idLlanta"],$args["precio"]);
-      $parametros = array($productocompra->idLlanta,$productocompra->precio,$productocompra->id);
-      $sql = "UPDATE ProductoCompra SET idLlanta = ?,precio = ? WHERE id = ?;";
+      $productocompra = new ProductoCompra($args["id"],$args["descripcion"],$args["precio"]);
+      $parametros = array($productocompra->descripcion,$productocompra->precio,$productocompra->id);
+      $sql = "UPDATE ProductoCompra SET descripcion = ?,precio = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

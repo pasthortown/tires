@@ -4,19 +4,17 @@ import { CommonModule } from '@angular/common';
 
 import { GeneradorCodigoBarraBienesRoutingModule } from './generadorCodigoBarraBienes-routing.module';
 import { GeneradorCodigoBarraBienesComponent } from './generadorCodigoBarraBienes.component';
-import { PersonaService } from './../CRUD/persona/persona.service';
-import { GeneroService } from './../CRUD/genero/genero.service';
-import { UbicacionService } from './../CRUD/ubicacion/ubicacion.service';
+import { BienesService } from './../CRUD/bienes/bienes.service';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
+      NgxBarcodeModule,
       GeneradorCodigoBarraBienesRoutingModule
    ],
-   providers: [PersonaService,
-               GeneroService,
-               UbicacionService],
+   providers: [BienesService],
    declarations: [GeneradorCodigoBarraBienesComponent],
 })
 export class GeneradorCodigoBarraBienesModule { }

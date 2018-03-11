@@ -1,65 +1,32 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { llanta } from './../../../entidades/CRUD/llanta';
-import { llantaService } from './llanta.service';
+import { LlantaCompra } from '../../../entidades/CRUD/LlantaCompra';
+import { LlantaCompraService } from './llantacompra.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from './../../bs-component/components';
+import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
-import { Ubicacion } from '../../../entidades/CRUD/Ubicacion';
-import { TipoUso } from '../../../entidades/CRUD/TipoUso';
-import { CaracteristicaTerreno } from './../../../entidades/CRUD/CaracteristicaTerreno';
-import { Fabricante } from './../../../entidades/CRUD/Fabricante';
-import { IndiceVelocidad } from './../../../entidades/CRUD/IndiceVelocidad';
-import { IndiceCarga } from './../../../entidades/CRUD/IndiceCarga';
-import { ConstruccionLlanta } from './../../../entidades/CRUD/ConstruccionLlanta';
-
-import { UbicacionService } from './../ubicacion/ubicacion.service';
-import { TipoUsoService } from './../tipouso/tipouso.service';
-import { CaracteristicaTerrenoService } from './../caracteristicaterreno/caracteristicaterreno.service';
-import { FabricanteService } from './../fabricante/fabricante.service';
-import { IndiceVelocidadService } from './../indicevelocidad/indicevelocidad.service';
-import { IndiceCargaService } from './../indicecarga/indicecarga.service';
-import { ConstruccionLlantaService } from './../construccionllanta/construccionllanta.service';
-
 @Component({
-   selector: 'app-llanta',
-   templateUrl: './llanta.component.html',
-   styleUrls: ['./llanta.component.scss']
+   selector: 'app-llantacompra',
+   templateUrl: './llantacompra.component.html',
+   styleUrls: ['./llantacompra.component.scss']
 })
 
-export class llantaComponent implements OnInit {
+export class LlantaCompraComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: llanta[];
-   entidadSeleccionada: llanta;
+   entidades: LlantaCompra[];
+   entidadSeleccionada: LlantaCompra;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   construccionesllanta: ConstruccionLlanta[];
-   indicescarga: IndiceCarga[];
-   indicesvelocidad: IndiceVelocidad[];
-   fabricantes: Fabricante[];
-   paisesorigen: Ubicacion[];
-   caracteristicasterreno: CaracteristicaTerreno[];
-   tiposuso: TipoUso[];
 
-   constructor(public toastr: ToastsManager,
-                vcr: ViewContainerRef,
-                private dataService: llantaService,
-                private ubicacionService: UbicacionService,
-                private caracteristicaTerrenoService: CaracteristicaTerrenoService,
-                private fabricanteService: FabricanteService,
-                private tipoUsoService: TipoUsoService,
-                private indiceVelocidadService: IndiceVelocidadService,
-                private indiceCargaService: IndiceCargaService,
-                private construccionLlantaService: ConstruccionLlantaService,
-                private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: LlantaCompraService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -145,7 +112,7 @@ export class llantaComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: llanta): boolean {
+   isValid(entidadPorEvaluar: LlantaCompra): boolean {
       return true;
    }
 
@@ -159,13 +126,13 @@ export class llantaComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): llanta {
-      const nuevollanta = new llanta();
-      nuevollanta.id = 0;
-      return nuevollanta;
+   crearEntidad(): LlantaCompra {
+      const nuevoLlantaCompra = new LlantaCompra();
+      nuevoLlantaCompra.id = 0;
+      return nuevoLlantaCompra;
    }
 
-   add(entidadNueva: llanta): void {
+   add(entidadNueva: LlantaCompra): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +147,7 @@ export class llantaComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: llanta): void {
+   update(entidadParaActualizar: LlantaCompra): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -195,7 +162,7 @@ export class llantaComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: llanta): void {
+   delete(entidadParaBorrar: LlantaCompra): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -213,7 +180,7 @@ export class llantaComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = llanta[0];
+      this.entidades = LlantaCompra[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -244,94 +211,10 @@ export class llantaComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
-      this.getconstruccionesllanta();
-      this.getindicescarga();
-      this.getindicesvelocidad();
-      this.getfabricantes();
-      this.getpaisesorigen();
-      this.getcaracteristicasterreno();
-      this.gettiposuso();
       this.refresh();
    }
 
-   onSelect(entidadActual: llanta): void {
+   onSelect(entidadActual: LlantaCompra): void {
       this.entidadSeleccionada = entidadActual;
    }
-
-    getconstruccionesllanta(){
-      this.construccionesllanta=[];
-      this.busy = this.construccionLlantaService.getAll()
-      .then(respuesta => {
-        this.construccionesllanta = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    getindicescarga(){
-      this.indicescarga=[];
-      this.busy = this.indiceCargaService.getAll()
-      .then(respuesta => {
-        this.indicescarga = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    getindicesvelocidad(){
-      this.indicesvelocidad=[];
-      this.busy = this.indiceVelocidadService.getAll()
-      .then(respuesta => {
-        this.indicesvelocidad = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    getfabricantes(){
-      this.fabricantes=[];
-      this.busy = this.fabricanteService.getAll()
-      .then(respuesta => {
-        this.fabricantes = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    getpaisesorigen(){
-      this.paisesorigen=[];
-      this.busy = this.ubicacionService.getAll()
-      .then(respuesta => {
-        this.paisesorigen = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    getcaracteristicasterreno(){
-      this.caracteristicasterreno=[];
-      this.busy = this.caracteristicaTerrenoService.getAll()
-      .then(respuesta => {
-        this.caracteristicasterreno = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
-
-    gettiposuso(){
-      this.tiposuso=[];
-      this.busy = this.tipoUsoService.getAll()
-      .then(respuesta => {
-        this.tiposuso = respuesta;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
 }

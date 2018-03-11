@@ -2,12 +2,12 @@
 class ProductoCompra
 {
    public $id;
-   public $idLlanta;
+   public $descripcion;
    public $precio;
 
-   function __construct($id,$idLlanta,$precio){
+   function __construct($id,$descripcion,$precio){
       $this->id = $id;
-      $this->idLlanta = $idLlanta;
+      $this->descripcion = $descripcion;
       $this->precio = $precio;
    }
 }

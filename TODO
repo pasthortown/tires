@@ -1,10 +1,10 @@
-Generador de codigo de barras inventario
-Registrar Llanta
 Registrar Neumatico (Venta / Compra)
 Registrar Producto (Venta / Compra)
 Registrar Servicio (Venta / Compra)
-Mostrar Catalogo Neumaticos
+Mostrar Stock Neumaticos
 Mostrar Catalogo Productos
+Mostrar Stock Productos
 Mostrar Catalogo Servicios
+Mostrar Stock Servicios
 Mejorar vista Cargo por las Funciones
 FACTURAR

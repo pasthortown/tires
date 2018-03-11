@@ -1,13 +1,13 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-include_once('../entidades/CRUD/ProductoVenta.php');
-class Controlador_productoventa extends Controlador_Base
+include_once('../entidades/CRUD/LlantaVenta.php');
+class Controlador_llantaventa extends Controlador_Base
 {
    function crear($args)
    {
-      $productoventa = new ProductoVenta($args["id"],$args["descripcion"],$args["precio"]);
-      $sql = "INSERT INTO ProductoVenta (descripcion,precio) VALUES (?,?);";
-      $parametros = array($productoventa->descripcion,$productoventa->precio);
+      $llantaventa = new LlantaVenta($args["id"],$args["idLlanta"],$args["serie"],$args["precio"]);
+      $sql = "INSERT INTO LlantaVenta (idLlanta,serie,precio) VALUES (?,?,?);";
+      $parametros = array($llantaventa->idLlanta,$llantaventa->serie,$llantaventa->precio);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_productoventa extends Controlador_Base
 
    function actualizar($args)
    {
-      $productoventa = new ProductoVenta($args["id"],$args["descripcion"],$args["precio"]);
-      $parametros = array($productoventa->descripcion,$productoventa->precio,$productoventa->id);
-      $sql = "UPDATE ProductoVenta SET descripcion = ?,precio = ? WHERE id = ?;";
+      $llantaventa = new LlantaVenta($args["id"],$args["idLlanta"],$args["serie"],$args["precio"]);
+      $parametros = array($llantaventa->idLlanta,$llantaventa->serie,$llantaventa->precio,$llantaventa->id);
+      $sql = "UPDATE LlantaVenta SET idLlanta = ?,serie = ?,precio = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -33,7 +33,7 @@ class Controlador_productoventa extends Controlador_Base
    {
       $id = $args["id"];
       $parametros = array($id);
-      $sql = "DELETE FROM ProductoVenta WHERE id = ?;";
+      $sql = "DELETE FROM LlantaVenta WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -46,10 +46,10 @@ class Controlador_productoventa extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM ProductoVenta;";
+         $sql = "SELECT * FROM LlantaVenta;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM ProductoVenta WHERE id = ?;";
+         $sql = "SELECT * FROM LlantaVenta WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_productoventa extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM ProductoVenta LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM LlantaVenta LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -68,7 +68,7 @@ class Controlador_productoventa extends Controlador_Base
    function numero_paginas($args)
    {
       $registrosPorPagina = $args["registros_por_pagina"];
-      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM ProductoVenta;";
+      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM LlantaVenta;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta[0];
    }
@@ -81,16 +81,16 @@ class Controlador_productoventa extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM ProductoVenta WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM LlantaVenta WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM ProductoVenta WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM LlantaVenta WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM ProductoVenta WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM LlantaVenta WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM ProductoVenta WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM LlantaVenta WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

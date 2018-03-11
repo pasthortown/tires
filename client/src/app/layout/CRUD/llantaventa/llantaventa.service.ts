@@ -4,13 +4,13 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { ProductoCompra } from '../../../entidades/CRUD/ProductoCompra';
+import { LlantaVenta } from '../../../entidades/CRUD/LlantaVenta';
 
 @Injectable()
 
-export class ProductoCompraService {
+export class LlantaVentaService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = environment.apiUrl + 'productocompra';
+   private urlBase = environment.apiUrl + 'llantaventa';
 
    constructor(private http: Http) {
    }
@@ -19,38 +19,38 @@ export class ProductoCompraService {
        return this.urlBase;
    }
 
-   getAll(): Promise<ProductoCompra[]> {
-      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as ProductoCompra[]).catch(this.handleError);
+   getAll(): Promise<LlantaVenta[]> {
+      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as LlantaVenta[]).catch(this.handleError);
    }
 
-   getPagina(pagina: number, tamanoPagina: number): Promise<ProductoCompra[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as ProductoCompra[]).catch(this.handleError);
+   getPagina(pagina: number, tamanoPagina: number): Promise<LlantaVenta[]> {
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as LlantaVenta[]).catch(this.handleError);
    }
 
-   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<ProductoCompra[]> {
-      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as ProductoCompra[]).catch(this.handleError);
+   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<LlantaVenta[]> {
+      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as LlantaVenta[]).catch(this.handleError);
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<any> {
       return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   get(id: number): Promise<ProductoCompra> {
+   get(id: number): Promise<LlantaVenta> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>(response.json() as ProductoCompra[])[0]).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as LlantaVenta[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as ProductoCompra).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as LlantaVenta).catch(this.handleError);
    }
 
-   create(entidadTransporte: ProductoCompra): Promise<boolean> {
+   create(entidadTransporte: LlantaVenta): Promise<boolean> {
       const url = `${this.urlBase+'/crear'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   update(entidadTransporte: ProductoCompra): Promise<boolean> {
+   update(entidadTransporte: LlantaVenta): Promise<boolean> {
       const url = `${this.urlBase+'/actualizar'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
