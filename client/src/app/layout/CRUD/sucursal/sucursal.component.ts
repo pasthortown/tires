@@ -8,6 +8,9 @@ import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+import { Ubicacion } from './../../../entidades/CRUD/Ubicacion';
+import { UbicacionService } from './../ubicacion/ubicacion.service';
+
 @Component({
    selector: 'app-sucursal',
    templateUrl: './sucursal.component.html',
@@ -25,8 +28,12 @@ export class SucursalComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   paises: Ubicacion[];
+   provincias: Ubicacion[];
+   cantones: Ubicacion[];
+   parroquias: Ubicacion[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: SucursalService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: SucursalService, private ubicacionService: UbicacionService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -129,6 +136,7 @@ export class SucursalComponent implements OnInit {
    crearEntidad(): Sucursal {
       const nuevoSucursal = new Sucursal();
       nuevoSucursal.id = 0;
+      this.getPaises();
       return nuevoSucursal;
    }
 
@@ -211,10 +219,70 @@ export class SucursalComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
+      this.getPaises();
       this.refresh();
    }
 
    onSelect(entidadActual: Sucursal): void {
       this.entidadSeleccionada = entidadActual;
+      if(this.entidadSeleccionada.idUbicacionPais != ''){
+         this.getProvincias(this.entidadSeleccionada.idUbicacionPais);
+      }
+      if(this.entidadSeleccionada.idUbicacionProvincia != ''){
+         this.getCantones(this.entidadSeleccionada.idUbicacionProvincia);
+      }
+      if(this.entidadSeleccionada.idUbicacionCanton != ''){
+         this.getParroquias(this.entidadSeleccionada.idUbicacionCanton);
+      }
+   }
+
+   getPaises(): void {
+      this.paises = [];
+      this.provincias = [];
+      this.cantones = [];
+      this.parroquias = [];
+      this.busy = this.ubicacionService.getFiltrado('codigoPadre', 'coincide', '0')
+      .then(respuesta => {
+         this.paises = respuesta;
+      })
+      .catch(error => {
+         console.error;
+      });
+   }
+
+   getProvincias(pais: string): void {
+      this.provincias = [];
+      this.cantones = [];
+      this.parroquias = [];
+      this.busy = this.ubicacionService.getFiltrado('codigoPadre', 'coincide', pais)
+      .then(respuesta => {
+         this.provincias = respuesta;
+      })
+      .catch(error => {
+         console.error;
+      });
+   }
+
+   getCantones(provincia): void {
+      this.cantones = [];
+      this.parroquias = [];
+      this.busy = this.ubicacionService.getFiltrado('codigoPadre', 'coincide', provincia)
+      .then(respuesta => {
+         this.cantones = respuesta;
+      })
+      .catch(error => {
+         console.error;
+      });
+   }
+
+   getParroquias(canton): void {
+      this.parroquias = [];
+      this.busy = this.ubicacionService.getFiltrado('codigoPadre', 'coincide', canton)
+      .then(respuesta => {
+         this.parroquias = respuesta;
+      })
+      .catch(error => {
+         console.error;
+      });
    }
 }

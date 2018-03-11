@@ -8,6 +8,13 @@ import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+import { PersonaService } from './../persona/persona.service';
+import { SucursalService } from './../sucursal/sucursal.service';
+import { CargoService } from './../cargo/cargo.service';
+import { Sucursal } from './../../../entidades/CRUD/Sucursal';
+import { Cargo } from './../../../entidades/CRUD/Cargo';
+import { Persona } from './../../../entidades/CRUD/Persona';
+
 @Component({
    selector: 'app-empleado',
    templateUrl: './empleado.component.html',
@@ -25,8 +32,10 @@ export class EmpleadoComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EmpleadoService, private modalService: NgbModal) {
+   personas: Persona[];
+   cargos: Cargo[];
+   sucursales: Sucursal[];
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EmpleadoService, private personaService: PersonaService, private sucursalService: SucursalService, private cargoService: CargoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -211,10 +220,46 @@ export class EmpleadoComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
+      this.getPersonas();
+      this.getCargos();
+      this.getSucursales();
       this.refresh();
    }
 
    onSelect(entidadActual: Empleado): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getPersonas(): void {
+      this.personas = [];
+      this.busy = this.personaService.getAll()
+      .then(respuesta => {
+         this.personas = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+   }
+
+   getSucursales(): void {
+      this.sucursales = [];
+      this.busy = this.sucursalService.getAll()
+      .then(respuesta => {
+         this.sucursales = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+   }
+
+   getCargos(): void {
+      this.cargos = [];
+      this.busy = this.cargoService.getAll()
+      .then(respuesta => {
+         this.cargos = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }

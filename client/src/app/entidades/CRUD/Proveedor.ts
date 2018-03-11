@@ -1,14 +1,14 @@
 export class Proveedor {
    id: number;
    identificacion: string;
-   nombres: string;
-   apellidos: string;
+   nombreCompleto: string;
+   nombreContacto: string;
    telefono1: string;
    telefono2: string;
    correoElectronico: string;
-   idUbicacionPais: number;
-   idUbicacionProvincia: number;
-   idUbicacionCanton: number;
-   idUbicacionParroquia: number;
+   idUbicacionPais: string;
+   idUbicacionProvincia: string;
+   idUbicacionCanton: string;
+   idUbicacionParroquia: string;
    direccion: string;
 }

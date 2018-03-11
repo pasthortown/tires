@@ -9,6 +9,15 @@
         <a [routerLink]="['/registrodatospersonales']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-address-card-o"></i>&nbsp;{{ 'Register Personal Information' | translate }}
         </a>
+        <a [routerLink]="['/sucursal']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-cubes"></i>&nbsp;{{ 'Our Branches' | translate }}
+        </a>
+        <a [routerLink]="['/proveedor']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-handshake-o"></i>&nbsp;{{ 'Our Suppliers' | translate }}
+        </a>
+        <a [routerLink]="['/empleado']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-group"></i>&nbsp;{{ 'Our Team' | translate }}
+        </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <span><i class="fa fa-fw fa-database"></i>&nbsp; {{ 'Data Base' | translate }}</span>

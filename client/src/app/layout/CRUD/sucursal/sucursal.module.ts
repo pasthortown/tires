@@ -6,13 +6,16 @@ import { SucursalRoutingModule } from './sucursal-routing.module';
 import { SucursalComponent } from './sucursal.component';
 import { SucursalService } from './sucursal.service';
 
+import { UbicacionService } from './../ubicacion/ubicacion.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       SucursalRoutingModule
    ],
-   providers: [SucursalService],
+   providers: [SucursalService,
+               UbicacionService],
    declarations: [SucursalComponent],
 })
 export class SucursalModule { }

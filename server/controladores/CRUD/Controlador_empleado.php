@@ -46,10 +46,10 @@ class Controlador_empleado extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Empleado;";
+         $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id ORDER BY Sucursal, Persona ASC;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Empleado WHERE id = ?;";
+         $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id WHERE Empleado.id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_empleado extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Empleado LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id ORDER BY Sucursal, Persona ASC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_empleado extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna = ?;";
+            $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id WHERE $nombreColumna LIKE '$filtro%' ORDER BY Sucursal, Persona ASC;";
             break;
          case "termina":
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id WHERE $nombreColumna LIKE '%$filtro' ORDER BY Sucursal, Persona ASC;";
             break;
          default:
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT Empleado.*, CONCAT(Persona.apellidos, ' ', Persona.nombres) as 'Persona', CONCAT(Sucursal.nombre, ', ', Sucursal.direccion) as 'Sucursal', Cargo.descripcion as 'Cargo' FROM Empleado INNER JOIN Persona ON Empleado.idPersona = Persona.id INNER JOIN Sucursal ON Empleado.idSucursal = Sucursal.id INNER JOIN Cargo ON Empleado.idCargo = Cargo.id WHERE $nombreColumna LIKE '%$filtro%' ORDER BY Sucursal, Persona ASC;";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

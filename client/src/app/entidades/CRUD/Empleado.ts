@@ -3,4 +3,7 @@ export class Empleado {
    idPersona: number;
    idSucursal: number;
    idCargo: number;
+   Persona: string;
+   Sucursal: string;
+   Cargo: string;
 }

@@ -1,13 +1,13 @@
-<div class="container">
+<div class="col-12">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Sucursal</h2>
+         <h2 style="margin-top:0px">Nuestras Sucursales</h2>
       </div>
    </div>
    <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
          <div class="btn-toolbar">
-            <div>
+            <div class="btn-group" role="group">
                <button type="button" class="btn btn-default" (click)="refresh()">
                   <span class="fa fa-refresh"></span>&nbsp;Leer
                </button>
@@ -33,57 +33,32 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Identificador</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
                         <strong>RUC</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>nombre</strong>
+                        <strong>Nombre</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>telefono1</strong>
+                        <strong>Teléfono Principal</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>telefono2</strong>
+                        <strong>Teléfono Secundario</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>correoElectronico</strong>
+                        <strong>Correo Electrónico</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idUbicacionPais</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idUbicacionProvincia</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idUbicacionCanton</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idUbicacionParroquia</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>direccion</strong>
+                        <strong>Dirección</strong>
                      </span>
                   </th>
                </tr>
@@ -93,16 +68,11 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.id}}</td>
                   <td>{{actual.RUC}}</td>
                   <td>{{actual.nombre}}</td>
                   <td>{{actual.telefono1}}</td>
                   <td>{{actual.telefono2}}</td>
                   <td>{{actual.correoElectronico}}</td>
-                  <td>{{actual.idUbicacionPais}}</td>
-                  <td>{{actual.idUbicacionProvincia}}</td>
-                  <td>{{actual.idUbicacionCanton}}</td>
-                  <td>{{actual.idUbicacionParroquia}}</td>
                   <td>{{actual.direccion}}</td>
                </tr>
             </tbody>
@@ -132,7 +102,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+               Edición de Datos: {{entidadSeleccionada.RUC | uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -157,57 +127,69 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="nombre" class="col-sm-4 col-form-label">nombre</label>
+            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" [(ngModel)]="entidadSeleccionada.nombre">
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="entidadSeleccionada.nombre">
             </div>
          </div>
          <div class="form-group row">
-            <label for="telefono1" class="col-sm-4 col-form-label">telefono1</label>
+            <label for="telefono1" class="col-sm-4 col-form-label">Telf. Principal</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="telefono1" name="telefono1" placeholder="telefono1" [(ngModel)]="entidadSeleccionada.telefono1">
+              <input type="text" class="form-control" id="telefono1" name="telefono1" placeholder="Teléfono Principal" [(ngModel)]="entidadSeleccionada.telefono1">
             </div>
          </div>
          <div class="form-group row">
-            <label for="telefono2" class="col-sm-4 col-form-label">telefono2</label>
+            <label for="telefono2" class="col-sm-4 col-form-label">Telf. Secundario</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="telefono2" name="telefono2" placeholder="telefono2" [(ngModel)]="entidadSeleccionada.telefono2">
+              <input type="text" class="form-control" id="telefono2" name="telefono2" placeholder="Teléfono Secundario" [(ngModel)]="entidadSeleccionada.telefono2">
             </div>
          </div>
          <div class="form-group row">
-            <label for="correoElectronico" class="col-sm-4 col-form-label">correoElectronico</label>
+            <label for="correoElectronico" class="col-sm-4 col-form-label">Email</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="correoElectronico" name="correoElectronico" placeholder="correoElectronico" [(ngModel)]="entidadSeleccionada.correoElectronico">
+              <input type="text" class="form-control" id="correoElectronico" name="correoElectronico" placeholder="Correo Electrónico" [(ngModel)]="entidadSeleccionada.correoElectronico">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idUbicacionPais" class="col-sm-4 col-form-label">idUbicacionPais</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idUbicacionPais" name="idUbicacionPais" placeholder="idUbicacionPais" [(ngModel)]="entidadSeleccionada.idUbicacionPais">
+            <label for="idUbicacionPais" class="col-sm-4 col-form-label">País</label>
+            <div class="col-8">
+                <select class="form-control" id="idUbicacionPais" name="idUbicacionPais" [(ngModel)]="entidadSeleccionada.idUbicacionPais" (change)="getProvincias(entidadSeleccionada.idUbicacionPais)">
+                    <option value="0" disabled selected>Seleccione...</option>
+                    <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
-            <label for="idUbicacionProvincia" class="col-sm-4 col-form-label">idUbicacionProvincia</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idUbicacionProvincia" name="idUbicacionProvincia" placeholder="idUbicacionProvincia" [(ngModel)]="entidadSeleccionada.idUbicacionProvincia">
+            <label for="idUbicacionProvincia" class="col-sm-4 col-form-label">Provincia</label>
+            <div class="col-8">
+                <select class="form-control" id="idUbicacionProvincia" name="idUbicacionProvincia" [(ngModel)]="entidadSeleccionada.idUbicacionProvincia" (change)="getCantones(entidadSeleccionada.idUbicacionProvincia)">
+                    <option value="0" disabled selected>Seleccione...</option>
+                    <option *ngFor="let provincia of provincias" value={{provincia.codigo}}>{{provincia.descripcion}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
-            <label for="idUbicacionCanton" class="col-sm-4 col-form-label">idUbicacionCanton</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idUbicacionCanton" name="idUbicacionCanton" placeholder="idUbicacionCanton" [(ngModel)]="entidadSeleccionada.idUbicacionCanton">
+            <label for="idUbicacionCanton" class="col-sm-4 col-form-label">Cantón</label>
+            <div class="col-8">
+                <select class="form-control" id="idUbicacionCanton" name="idUbicacionCanton" [(ngModel)]="entidadSeleccionada.idUbicacionCanton" (change)="getParroquias(entidadSeleccionada.idUbicacionCanton)">
+                    <option value="0" disabled selected>Seleccione...</option>
+                    <option *ngFor="let canton of cantones" value={{canton.codigo}}>{{canton.descripcion}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
-            <label for="idUbicacionParroquia" class="col-sm-4 col-form-label">idUbicacionParroquia</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idUbicacionParroquia" name="idUbicacionParroquia" placeholder="idUbicacionParroquia" [(ngModel)]="entidadSeleccionada.idUbicacionParroquia">
+            <label for="idUbicacionParroquia" class="col-sm-4 col-form-label">Parroquia</label>
+            <div class="col-8">
+                <select class="form-control" id="idUbicacionParroquia" name="idUbicacionParroquia" [(ngModel)]="entidadSeleccionada.idUbicacionParroquia">
+                    <option value="0" disabled selected>Seleccione...</option>
+                    <option *ngFor="let parroquia of parroquias" value={{parroquia.codigo}}>{{parroquia.descripcion}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
-            <label for="direccion" class="col-sm-4 col-form-label">direccion</label>
+            <label for="direccion" class="col-sm-4 col-form-label">Dirección</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="direccion" [(ngModel)]="entidadSeleccionada.direccion">
+              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" [(ngModel)]="entidadSeleccionada.direccion">
             </div>
          </div>
          </form>
