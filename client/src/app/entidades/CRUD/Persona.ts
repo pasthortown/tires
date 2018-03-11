@@ -6,10 +6,10 @@ export class Persona {
    telefono1: string;
    telefono2: string;
    correoElectronico: string;
-   idUbicacionPais: number;
-   idUbicacionProvincia: number;
-   idUbicacionCanton: number;
-   idUbicacionParroquia: number;
+   idUbicacionPais: string;
+   idUbicacionProvincia: string;
+   idUbicacionCanton: string;
+   idUbicacionParroquia: string;
    idGenero: number;
    direccion: string;
 }

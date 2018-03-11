@@ -1,7 +1,8 @@
 {
     "Dashboard": "Principal",
-    "Charts": "Caracteres",
+    "Charts": "Estadísticas",
     "Tables": "Tablas",
+    "Register Personal Information": "Registrar Datos Personales",
     "Forms": "Formularios",
     "Bootstrap Element": "Elementos Bootstrap",
     "Bootstrap Grid": "Rejilla Bootstrap",
