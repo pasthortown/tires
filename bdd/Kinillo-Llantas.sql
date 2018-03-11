@@ -303,6 +303,14 @@ CREATE TABLE Empleado (
     id INT NOT NULL AUTO_INCREMENT,
     idPersona INT NULL,
     idSucursal INT NULL,
+    idCargo INT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Cargo (
+    id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(100) NULL,
+    funciones TEXT NULL,
     PRIMARY KEY (id)
 );
 

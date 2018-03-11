@@ -15,4 +15,4 @@ import { llantaService } from './llanta.service';
    providers: [llantaService],
    declarations: [llantaComponent],
 })
-export class llantaModule { }
+export class LlantaModule { }

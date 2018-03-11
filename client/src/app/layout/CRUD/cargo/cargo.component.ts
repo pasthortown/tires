@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Empleado } from './../../../entidades/CRUD/Empleado';
-import { EmpleadoService } from './empleado.service';
+import { Cargo } from './../../../entidades/CRUD/Cargo';
+import { CargoService } from './cargo.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../bs-component/components';
@@ -9,16 +9,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-empleado',
-   templateUrl: './empleado.component.html',
-   styleUrls: ['./empleado.component.scss']
+   selector: 'app-cargo',
+   templateUrl: './cargo.component.html',
+   styleUrls: ['./cargo.component.scss']
 })
 
-export class EmpleadoComponent implements OnInit {
+export class CargoComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: Empleado[];
-   entidadSeleccionada: Empleado;
+   entidades: Cargo[];
+   entidadSeleccionada: Cargo;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class EmpleadoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EmpleadoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: CargoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class EmpleadoComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: Empleado): boolean {
+   isValid(entidadPorEvaluar: Cargo): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class EmpleadoComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): Empleado {
-      const nuevoEmpleado = new Empleado();
-      nuevoEmpleado.id = 0;
-      return nuevoEmpleado;
+   crearEntidad(): Cargo {
+      const nuevoCargo = new Cargo();
+      nuevoCargo.id = 0;
+      return nuevoCargo;
    }
 
-   add(entidadNueva: Empleado): void {
+   add(entidadNueva: Cargo): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class EmpleadoComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: Empleado): void {
+   update(entidadParaActualizar: Cargo): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class EmpleadoComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Empleado): void {
+   delete(entidadParaBorrar: Cargo): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class EmpleadoComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Empleado[0];
+      this.entidades = Cargo[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class EmpleadoComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: Empleado): void {
+   onSelect(entidadActual: Cargo): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

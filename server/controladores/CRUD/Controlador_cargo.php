@@ -1,13 +1,13 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-include_once('../entidades/CRUD/Empleado.php');
-class Controlador_empleado extends Controlador_Base
+include_once('../entidades/CRUD/Cargo.php');
+class Controlador_cargo extends Controlador_Base
 {
    function crear($args)
    {
-      $empleado = new Empleado($args["id"],$args["idPersona"],$args["idSucursal"],$args["idCargo"]);
-      $sql = "INSERT INTO Empleado (idPersona,idSucursal,idCargo) VALUES (?,?,?);";
-      $parametros = array($empleado->idPersona,$empleado->idSucursal,$empleado->idCargo);
+      $cargo = new Cargo($args["id"],$args["descripcion"],$args["funciones"]);
+      $sql = "INSERT INTO Cargo (descripcion,funciones) VALUES (?,?);";
+      $parametros = array($cargo->descripcion,$cargo->funciones);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_empleado extends Controlador_Base
 
    function actualizar($args)
    {
-      $empleado = new Empleado($args["id"],$args["idPersona"],$args["idSucursal"],$args["idCargo"]);
-      $parametros = array($empleado->idPersona,$empleado->idSucursal,$empleado->idCargo,$empleado->id);
-      $sql = "UPDATE Empleado SET idPersona = ?,idSucursal = ?,idCargo = ? WHERE id = ?;";
+      $cargo = new Cargo($args["id"],$args["descripcion"],$args["funciones"]);
+      $parametros = array($cargo->descripcion,$cargo->funciones,$cargo->id);
+      $sql = "UPDATE Cargo SET descripcion = ?,funciones = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -33,7 +33,7 @@ class Controlador_empleado extends Controlador_Base
    {
       $id = $args["id"];
       $parametros = array($id);
-      $sql = "DELETE FROM Empleado WHERE id = ?;";
+      $sql = "DELETE FROM Cargo WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -46,10 +46,10 @@ class Controlador_empleado extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Empleado;";
+         $sql = "SELECT * FROM Cargo;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Empleado WHERE id = ?;";
+         $sql = "SELECT * FROM Cargo WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_empleado extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Empleado LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Cargo LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -68,7 +68,7 @@ class Controlador_empleado extends Controlador_Base
    function numero_paginas($args)
    {
       $registrosPorPagina = $args["registros_por_pagina"];
-      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM Empleado;";
+      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM Cargo;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta[0];
    }
@@ -81,16 +81,16 @@ class Controlador_empleado extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM Cargo WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM Cargo WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM Cargo WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Empleado WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM Cargo WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
