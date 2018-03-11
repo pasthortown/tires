@@ -7,6 +7,8 @@ import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Proveedor } from '../../../entidades/CRUD/Proveedor';
+import { ProveedorService } from '../proveedor/proveedor.service';
 
 @Component({
    selector: 'app-bienes',
@@ -25,8 +27,9 @@ export class BienesComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   proveedores: Proveedor[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: BienesService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: BienesService, private proveedorService: ProveedorService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -211,10 +214,21 @@ export class BienesComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
+      this.getProveedores();
       this.refresh();
    }
 
    onSelect(entidadActual: Bienes): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getProveedores(): void {
+      this.busy = this.proveedorService.getAll()
+      .then(respuesta => {
+         this.proveedores = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }

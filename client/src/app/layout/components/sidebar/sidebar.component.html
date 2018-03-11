@@ -21,6 +21,9 @@
         <a [routerLink]="['/empleado']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-group"></i>&nbsp;{{ 'Our Team' | translate }}
         </a>
+        <a [routerLink]="['/bienes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-puzzle-piece"></i>&nbsp;{{ 'Inventory' | translate }}
+        </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <span><i class="fa fa-fw fa-database"></i>&nbsp; {{ 'Data Base' | translate }}</span>

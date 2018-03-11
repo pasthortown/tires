@@ -5,12 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-
-
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BsComponentModule } from './layout/bs-component/bs-component.module';

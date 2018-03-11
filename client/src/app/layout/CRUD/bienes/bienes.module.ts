@@ -1,3 +1,4 @@
+import { ProveedorService } from './../proveedor/proveedor.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,8 @@ import { BienesService } from './bienes.service';
       FormsModule,
       BienesRoutingModule
    ],
-   providers: [BienesService],
-   declarations: [BienesComponent],
+   providers: [BienesService,
+               ProveedorService],
+   declarations: [BienesComponent]
 })
 export class BienesModule { }
