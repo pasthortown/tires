@@ -5,12 +5,12 @@ class Controlador_llanta extends Controlador_Base
 {
    function crear($args)
    {
-      $llanta = new llanta($args["id"],$args["codigo"],$args["nombre"],$args["ancho"],$args["perfilLlanta"],$args["fechaFabricacion"],$args["idConstruccionLlanta"],$args["diametroRin"],$args["idIndiceCarga"],$args["idIndiceVelocidad"],$args["codigoUTQG"],$args["presionMaxima"],$args["DOT"],$args["limiteCarga"],$args["idFabricante"],$args["idPaisOrigen"],$args["idCaracteristicaTerreno"],$args["idTipoUso"],$args["idTipoLabrado"]);
-      $sql = "INSERT INTO llanta (codigo,nombre,ancho,perfilLlanta,fechaFabricacion,idConstruccionLlanta,diametroRin,idIndiceCarga,idIndiceVelocidad,codigoUTQG,presionMaxima,DOT,limiteCarga,idFabricante,idPaisOrigen,idCaracteristicaTerreno,idTipoUso,idTipoLabrado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+      $llanta = new llanta($args["id"],$args["codigo"],$args["nombre"],$args["ancho"],$args["perfilLlanta"],$args["fechaFabricacion"],$args["idConstruccionLlanta"],$args["diametroRin"],$args["idIndiceCarga"],$args["idIndiceVelocidad"],$args["codigoUTQG"],$args["presionMaxima"],$args["DOT"],$args["limiteCarga"],$args["idFabricante"],$args["idUbicacionPais"],$args["idCaracteristicaTerreno"],$args["idTipoUso"],$args["labrado"]);
+      $sql = "INSERT INTO llanta (codigo,nombre,ancho,perfilLlanta,fechaFabricacion,idConstruccionLlanta,diametroRin,idIndiceCarga,idIndiceVelocidad,codigoUTQG,presionMaxima,DOT,limiteCarga,idFabricante,idUbicacionPais,idCaracteristicaTerreno,idTipoUso,labrado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
       $fechaFabricacionNoSQLTime = strtotime($llanta->fechaFabricacion);
       $fechaFabricacionSQLTime = date("Y-m-d", $fechaFabricacionNoSQLTime);
       $llanta->fechaFabricacion = $fechaFabricacionSQLTime;
-      $parametros = array($llanta->codigo,$llanta->nombre,$llanta->ancho,$llanta->perfilLlanta,$llanta->fechaFabricacion,$llanta->idConstruccionLlanta,$llanta->diametroRin,$llanta->idIndiceCarga,$llanta->idIndiceVelocidad,$llanta->codigoUTQG,$llanta->presionMaxima,$llanta->DOT,$llanta->limiteCarga,$llanta->idFabricante,$llanta->idPaisOrigen,$llanta->idCaracteristicaTerreno,$llanta->idTipoUso,$llanta->idTipoLabrado);
+      $parametros = array($llanta->codigo,$llanta->nombre,$llanta->ancho,$llanta->perfilLlanta,$llanta->fechaFabricacion,$llanta->idConstruccionLlanta,$llanta->diametroRin,$llanta->idIndiceCarga,$llanta->idIndiceVelocidad,$llanta->codigoUTQG,$llanta->presionMaxima,$llanta->DOT,$llanta->limiteCarga,$llanta->idFabricante,$llanta->idUbicacionPais,$llanta->idCaracteristicaTerreno,$llanta->idTipoUso,$llanta->labrado);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -21,9 +21,9 @@ class Controlador_llanta extends Controlador_Base
 
    function actualizar($args)
    {
-      $llanta = new llanta($args["id"],$args["codigo"],$args["nombre"],$args["ancho"],$args["perfilLlanta"],$args["fechaFabricacion"],$args["idConstruccionLlanta"],$args["diametroRin"],$args["idIndiceCarga"],$args["idIndiceVelocidad"],$args["codigoUTQG"],$args["presionMaxima"],$args["DOT"],$args["limiteCarga"],$args["idFabricante"],$args["idPaisOrigen"],$args["idCaracteristicaTerreno"],$args["idTipoUso"],$args["idTipoLabrado"]);
-      $parametros = array($llanta->codigo,$llanta->nombre,$llanta->ancho,$llanta->perfilLlanta,$llanta->fechaFabricacion,$llanta->idConstruccionLlanta,$llanta->diametroRin,$llanta->idIndiceCarga,$llanta->idIndiceVelocidad,$llanta->codigoUTQG,$llanta->presionMaxima,$llanta->DOT,$llanta->limiteCarga,$llanta->idFabricante,$llanta->idPaisOrigen,$llanta->idCaracteristicaTerreno,$llanta->idTipoUso,$llanta->idTipoLabrado,$llanta->id);
-      $sql = "UPDATE llanta SET codigo = ?,nombre = ?,ancho = ?,perfilLlanta = ?,fechaFabricacion = ?,idConstruccionLlanta = ?,diametroRin = ?,idIndiceCarga = ?,idIndiceVelocidad = ?,codigoUTQG = ?,presionMaxima = ?,DOT = ?,limiteCarga = ?,idFabricante = ?,idPaisOrigen = ?,idCaracteristicaTerreno = ?,idTipoUso = ?,idTipoLabrado = ? WHERE id = ?;";
+      $llanta = new llanta($args["id"],$args["codigo"],$args["nombre"],$args["ancho"],$args["perfilLlanta"],$args["fechaFabricacion"],$args["idConstruccionLlanta"],$args["diametroRin"],$args["idIndiceCarga"],$args["idIndiceVelocidad"],$args["codigoUTQG"],$args["presionMaxima"],$args["DOT"],$args["limiteCarga"],$args["idFabricante"],$args["idUbicacionPais"],$args["idCaracteristicaTerreno"],$args["idTipoUso"],$args["labrado"]);
+      $parametros = array($llanta->codigo,$llanta->nombre,$llanta->ancho,$llanta->perfilLlanta,$llanta->fechaFabricacion,$llanta->idConstruccionLlanta,$llanta->diametroRin,$llanta->idIndiceCarga,$llanta->idIndiceVelocidad,$llanta->codigoUTQG,$llanta->presionMaxima,$llanta->DOT,$llanta->limiteCarga,$llanta->idFabricante,$llanta->idUbicacionPais,$llanta->idCaracteristicaTerreno,$llanta->idTipoUso,$llanta->labrado,$llanta->id);
+      $sql = "UPDATE llanta SET codigo = ?,nombre = ?,ancho = ?,perfilLlanta = ?,fechaFabricacion = ?,idConstruccionLlanta = ?,diametroRin = ?,idIndiceCarga = ?,idIndiceVelocidad = ?,codigoUTQG = ?,presionMaxima = ?,DOT = ?,limiteCarga = ?,idFabricante = ?,idUbicacionPais = ?,idCaracteristicaTerreno = ?,idTipoUso = ?,labrado = ? WHERE id = ?;";
       $fechaFabricacionNoSQLTime = strtotime($llanta->fechaFabricacion);
       $fechaFabricacionSQLTime = date("Y-m-d", $fechaFabricacionNoSQLTime);
       $llanta->fechaFabricacion = $fechaFabricacionSQLTime;

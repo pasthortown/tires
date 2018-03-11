@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { PaisOrigen } from '../../../entidades/CRUD/PaisOrigen';
-import { PaisOrigenService } from './paisorigen.service';
+import { Persona } from './../../../entidades/CRUD/Persona';
+import { PersonaService } from './persona.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from '../../bs-component/components';
+import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-paisorigen',
-   templateUrl: './paisorigen.component.html',
-   styleUrls: ['./paisorigen.component.scss']
+   selector: 'app-persona',
+   templateUrl: './persona.component.html',
+   styleUrls: ['./persona.component.scss']
 })
 
-export class PaisOrigenComponent implements OnInit {
+export class PersonaComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: PaisOrigen[];
-   entidadSeleccionada: PaisOrigen;
+   entidades: Persona[];
+   entidadSeleccionada: Persona;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class PaisOrigenComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: PaisOrigenService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: PersonaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class PaisOrigenComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: PaisOrigen): boolean {
+   isValid(entidadPorEvaluar: Persona): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class PaisOrigenComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): PaisOrigen {
-      const nuevoPaisOrigen = new PaisOrigen();
-      nuevoPaisOrigen.id = 0;
-      return nuevoPaisOrigen;
+   crearEntidad(): Persona {
+      const nuevoPersona = new Persona();
+      nuevoPersona.id = 0;
+      return nuevoPersona;
    }
 
-   add(entidadNueva: PaisOrigen): void {
+   add(entidadNueva: Persona): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class PaisOrigenComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: PaisOrigen): void {
+   update(entidadParaActualizar: Persona): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class PaisOrigenComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: PaisOrigen): void {
+   delete(entidadParaBorrar: Persona): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class PaisOrigenComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = PaisOrigen[0];
+      this.entidades = Persona[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class PaisOrigenComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: PaisOrigen): void {
+   onSelect(entidadActual: Persona): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

@@ -5,9 +5,9 @@ class Controlador_proveedor extends Controlador_Base
 {
    function crear($args)
    {
-      $proveedor = new Proveedor($args["id"],$args["identificacion"],$args["nombres"],$args["apellidos"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["direccion"],$args["ubicacion"]);
-      $sql = "INSERT INTO Proveedor (identificacion,nombres,apellidos,telefono1,telefono2,correoElectronico,direccion,ubicacion) VALUES (?,?,?,?,?,?,?,?);";
-      $parametros = array($proveedor->identificacion,$proveedor->nombres,$proveedor->apellidos,$proveedor->telefono1,$proveedor->telefono2,$proveedor->correoElectronico,$proveedor->direccion,$proveedor->ubicacion);
+      $proveedor = new Proveedor($args["id"],$args["identificacion"],$args["nombres"],$args["apellidos"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["idUbicacionPais"],$args["idUbicacionProvincia"],$args["idUbicacionCanton"],$args["idUbicacionParroquia"],$args["direccion"]);
+      $sql = "INSERT INTO Proveedor (identificacion,nombres,apellidos,telefono1,telefono2,correoElectronico,idUbicacionPais,idUbicacionProvincia,idUbicacionCanton,idUbicacionParroquia,direccion) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+      $parametros = array($proveedor->identificacion,$proveedor->nombres,$proveedor->apellidos,$proveedor->telefono1,$proveedor->telefono2,$proveedor->correoElectronico,$proveedor->idUbicacionPais,$proveedor->idUbicacionProvincia,$proveedor->idUbicacionCanton,$proveedor->idUbicacionParroquia,$proveedor->direccion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_proveedor extends Controlador_Base
 
    function actualizar($args)
    {
-      $proveedor = new Proveedor($args["id"],$args["identificacion"],$args["nombres"],$args["apellidos"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["direccion"],$args["ubicacion"]);
-      $parametros = array($proveedor->identificacion,$proveedor->nombres,$proveedor->apellidos,$proveedor->telefono1,$proveedor->telefono2,$proveedor->correoElectronico,$proveedor->direccion,$proveedor->ubicacion,$proveedor->id);
-      $sql = "UPDATE Proveedor SET identificacion = ?,nombres = ?,apellidos = ?,telefono1 = ?,telefono2 = ?,correoElectronico = ?,direccion = ?,ubicacion = ? WHERE id = ?;";
+      $proveedor = new Proveedor($args["id"],$args["identificacion"],$args["nombres"],$args["apellidos"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["idUbicacionPais"],$args["idUbicacionProvincia"],$args["idUbicacionCanton"],$args["idUbicacionParroquia"],$args["direccion"]);
+      $parametros = array($proveedor->identificacion,$proveedor->nombres,$proveedor->apellidos,$proveedor->telefono1,$proveedor->telefono2,$proveedor->correoElectronico,$proveedor->idUbicacionPais,$proveedor->idUbicacionProvincia,$proveedor->idUbicacionCanton,$proveedor->idUbicacionParroquia,$proveedor->direccion,$proveedor->id);
+      $sql = "UPDATE Proveedor SET identificacion = ?,nombres = ?,apellidos = ?,telefono1 = ?,telefono2 = ?,correoElectronico = ?,idUbicacionPais = ?,idUbicacionProvincia = ?,idUbicacionCanton = ?,idUbicacionParroquia = ?,direccion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

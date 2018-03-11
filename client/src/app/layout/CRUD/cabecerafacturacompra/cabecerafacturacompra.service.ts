@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { CabeceraFacturaCompra } from '../../../entidades/CRUD/CabeceraFacturaCompra';
+import { CabeceraFacturaCompra } from './../../../entidades/CRUD/CabeceraFacturaCompra';
 
 @Injectable()
 

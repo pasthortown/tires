@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { IndiceCarga } from '../../../entidades/CRUD/IndiceCarga';
+import { IndiceCarga } from './../../../entidades/CRUD/IndiceCarga';
 import { IndiceCargaService } from './indicecarga.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from '../../bs-component/components';
+import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 

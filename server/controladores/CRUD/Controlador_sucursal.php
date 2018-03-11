@@ -5,9 +5,9 @@ class Controlador_sucursal extends Controlador_Base
 {
    function crear($args)
    {
-      $sucursal = new Sucursal($args["id"],$args["RUC"],$args["nombre"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["direccion"],$args["ubicacion"]);
-      $sql = "INSERT INTO Sucursal (RUC,nombre,telefono1,telefono2,correoElectronico,direccion,ubicacion) VALUES (?,?,?,?,?,?,?);";
-      $parametros = array($sucursal->RUC,$sucursal->nombre,$sucursal->telefono1,$sucursal->telefono2,$sucursal->correoElectronico,$sucursal->direccion,$sucursal->ubicacion);
+      $sucursal = new Sucursal($args["id"],$args["RUC"],$args["nombre"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["idUbicacionPais"],$args["idUbicacionProvincia"],$args["idUbicacionCanton"],$args["idUbicacionParroquia"],$args["direccion"]);
+      $sql = "INSERT INTO Sucursal (RUC,nombre,telefono1,telefono2,correoElectronico,idUbicacionPais,idUbicacionProvincia,idUbicacionCanton,idUbicacionParroquia,direccion) VALUES (?,?,?,?,?,?,?,?,?,?);";
+      $parametros = array($sucursal->RUC,$sucursal->nombre,$sucursal->telefono1,$sucursal->telefono2,$sucursal->correoElectronico,$sucursal->idUbicacionPais,$sucursal->idUbicacionProvincia,$sucursal->idUbicacionCanton,$sucursal->idUbicacionParroquia,$sucursal->direccion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_sucursal extends Controlador_Base
 
    function actualizar($args)
    {
-      $sucursal = new Sucursal($args["id"],$args["RUC"],$args["nombre"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["direccion"],$args["ubicacion"]);
-      $parametros = array($sucursal->RUC,$sucursal->nombre,$sucursal->telefono1,$sucursal->telefono2,$sucursal->correoElectronico,$sucursal->direccion,$sucursal->ubicacion,$sucursal->id);
-      $sql = "UPDATE Sucursal SET RUC = ?,nombre = ?,telefono1 = ?,telefono2 = ?,correoElectronico = ?,direccion = ?,ubicacion = ? WHERE id = ?;";
+      $sucursal = new Sucursal($args["id"],$args["RUC"],$args["nombre"],$args["telefono1"],$args["telefono2"],$args["correoElectronico"],$args["idUbicacionPais"],$args["idUbicacionProvincia"],$args["idUbicacionCanton"],$args["idUbicacionParroquia"],$args["direccion"]);
+      $parametros = array($sucursal->RUC,$sucursal->nombre,$sucursal->telefono1,$sucursal->telefono2,$sucursal->correoElectronico,$sucursal->idUbicacionPais,$sucursal->idUbicacionProvincia,$sucursal->idUbicacionCanton,$sucursal->idUbicacionParroquia,$sucursal->direccion,$sucursal->id);
+      $sql = "UPDATE Sucursal SET RUC = ?,nombre = ?,telefono1 = ?,telefono2 = ?,correoElectronico = ?,idUbicacionPais = ?,idUbicacionProvincia = ?,idUbicacionCanton = ?,idUbicacionParroquia = ?,direccion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

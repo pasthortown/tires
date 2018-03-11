@@ -1,7 +1,8 @@
-export class Sucursal {
+export class Persona {
    id: number;
-   RUC: string;
-   nombre: string;
+   identificacion: string;
+   nombres: string;
+   apellidos: string;
    telefono1: string;
    telefono2: string;
    correoElectronico: string;
@@ -9,5 +10,6 @@ export class Sucursal {
    idUbicacionProvincia: number;
    idUbicacionCanton: number;
    idUbicacionParroquia: number;
+   idGenero: number;
    direccion: string;
 }

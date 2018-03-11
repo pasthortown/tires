@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Vehiculo } from '../../../entidades/CRUD/Vehiculo';
+import { Vehiculo } from './../../../entidades/CRUD/Vehiculo';
 
 @Injectable()
 

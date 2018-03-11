@@ -18,17 +18,10 @@ CREATE TABLE llanta (
     DOT VARCHAR(100) NULL,
     limiteCarga VARCHAR(100) NULL,
     idFabricante INT NULL,
-    idPaisOrigen INT NULL,
+    idUbicacionPais INT NULL,
     idCaracteristicaTerreno INT NULL,
     idTipoUso INT NULL,
-    idTipoLabrado INT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE TipoLabrado (
-    id INT NOT NULL AUTO_INCREMENT,
-    codigo VARCHAR(10) NULL,
-    descripcion VARCHAR(500) NULL,
+    labrado VARCHAR(100) NULL,
     PRIMARY KEY (id)
 );
 
@@ -70,13 +63,7 @@ CREATE TABLE Fabricante (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE PaisOrigen (
-    id INT NOT NULL AUTO_INCREMENT,
-    descripcion VARCHAR(500) NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE Cliente (
+CREATE TABLE Persona (
     id INT NOT NULL AUTO_INCREMENT,
     identificacion VARCHAR(50) NULL,
     nombres VARCHAR(200) NULL,
@@ -84,10 +71,19 @@ CREATE TABLE Cliente (
     telefono1 VARCHAR(20) NULL,
     telefono2 VARCHAR(20) NULL,
     correoElectronico VARCHAR(500) NULL,
+    idUbicacionPais INT NULL,
+    idUbicacionProvincia INT NULL,
+    idUbicacionCanton INT NULL,
+    idUbicacionParroquia INT NULL,
+    idGenero INT NULL,
     direccion VARCHAR(500) NULL,
-    ubicacion INT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE TABLE Genero(
+	id INT AUTO_INCREMENT NOT NULL,
+	descripcion varchar(255) NULL,
+PRIMARY KEY (id));
 
 CREATE TABLE Ubicacion (
     id INT NOT NULL AUTO_INCREMENT,
@@ -122,8 +118,11 @@ CREATE TABLE Proveedor (
     telefono1 VARCHAR(20) NULL,
     telefono2 VARCHAR(20) NULL,
     correoElectronico VARCHAR(500) NULL,
+    idUbicacionPais INT NULL,
+    idUbicacionProvincia INT NULL,
+    idUbicacionCanton INT NULL,
+    idUbicacionParroquia INT NULL,
     direccion VARCHAR(500) NULL,
-    ubicacion INT NULL,
     PRIMARY KEY (id)
 );
 
@@ -302,14 +301,7 @@ CREATE TABLE DetalleFacturaCompraInsumo (
 
 CREATE TABLE Empleado (
     id INT NOT NULL AUTO_INCREMENT,
-    identificacion VARCHAR(50) NULL,
-    nombres VARCHAR(200) NULL,
-    apellidos VARCHAR(200) NULL,
-    telefono1 VARCHAR(20) NULL,
-    telefono2 VARCHAR(20) NULL,
-    correoElectronico VARCHAR(500) NULL,
-    direccion VARCHAR(500) NULL,
-    ubicacion INT NULL,
+    idPersona INT NULL,
     idSucursal INT NULL,
     PRIMARY KEY (id)
 );
@@ -321,7 +313,10 @@ CREATE TABLE Sucursal (
     telefono1 VARCHAR(20) NULL,
     telefono2 VARCHAR(20) NULL,
     correoElectronico VARCHAR(500) NULL,
+    idUbicacionPais INT NULL,
+    idUbicacionProvincia INT NULL,
+    idUbicacionCanton INT NULL,
+    idUbicacionParroquia INT NULL,
     direccion VARCHAR(500) NULL,
-    ubicacion INT NULL,
     PRIMARY KEY (id)
 );

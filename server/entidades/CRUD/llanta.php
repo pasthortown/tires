@@ -16,12 +16,12 @@ class llanta
    public $DOT;
    public $limiteCarga;
    public $idFabricante;
-   public $idPaisOrigen;
+   public $idUbicacionPais;
    public $idCaracteristicaTerreno;
    public $idTipoUso;
-   public $idTipoLabrado;
+   public $labrado;
 
-   function __construct($id,$codigo,$nombre,$ancho,$perfilLlanta,$fechaFabricacion,$idConstruccionLlanta,$diametroRin,$idIndiceCarga,$idIndiceVelocidad,$codigoUTQG,$presionMaxima,$DOT,$limiteCarga,$idFabricante,$idPaisOrigen,$idCaracteristicaTerreno,$idTipoUso,$idTipoLabrado){
+   function __construct($id,$codigo,$nombre,$ancho,$perfilLlanta,$fechaFabricacion,$idConstruccionLlanta,$diametroRin,$idIndiceCarga,$idIndiceVelocidad,$codigoUTQG,$presionMaxima,$DOT,$limiteCarga,$idFabricante,$idUbicacionPais,$idCaracteristicaTerreno,$idTipoUso,$labrado){
       $this->id = $id;
       $this->codigo = $codigo;
       $this->nombre = $nombre;
@@ -37,10 +37,10 @@ class llanta
       $this->DOT = $DOT;
       $this->limiteCarga = $limiteCarga;
       $this->idFabricante = $idFabricante;
-      $this->idPaisOrigen = $idPaisOrigen;
+      $this->idUbicacionPais = $idUbicacionPais;
       $this->idCaracteristicaTerreno = $idCaracteristicaTerreno;
       $this->idTipoUso = $idTipoUso;
-      $this->idTipoLabrado = $idTipoLabrado;
+      $this->labrado = $labrado;
    }
 }
 ?>

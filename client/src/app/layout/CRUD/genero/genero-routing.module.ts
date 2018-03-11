@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TipoLabradoComponent } from './tipolabrado.component';
+import { GeneroComponent } from './genero.component';
 
 const routes: Routes = [
-   { path: '', component: TipoLabradoComponent }
+   { path: '', component: GeneroComponent }
 ];
 
 @NgModule({
    imports: [RouterModule.forChild(routes)],
    exports: [RouterModule]
 })
-export class TipoLabradoRoutingModule { }
+export class GeneroRoutingModule { }

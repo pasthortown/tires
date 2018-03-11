@@ -1,5 +1,5 @@
 <?php
-class Proveedor
+class Persona
 {
    public $id;
    public $identificacion;
@@ -12,9 +12,10 @@ class Proveedor
    public $idUbicacionProvincia;
    public $idUbicacionCanton;
    public $idUbicacionParroquia;
+   public $idGenero;
    public $direccion;
 
-   function __construct($id,$identificacion,$nombres,$apellidos,$telefono1,$telefono2,$correoElectronico,$idUbicacionPais,$idUbicacionProvincia,$idUbicacionCanton,$idUbicacionParroquia,$direccion){
+   function __construct($id,$identificacion,$nombres,$apellidos,$telefono1,$telefono2,$correoElectronico,$idUbicacionPais,$idUbicacionProvincia,$idUbicacionCanton,$idUbicacionParroquia,$idGenero,$direccion){
       $this->id = $id;
       $this->identificacion = $identificacion;
       $this->nombres = $nombres;
@@ -26,6 +27,7 @@ class Proveedor
       $this->idUbicacionProvincia = $idUbicacionProvincia;
       $this->idUbicacionCanton = $idUbicacionCanton;
       $this->idUbicacionParroquia = $idUbicacionParroquia;
+      $this->idGenero = $idGenero;
       $this->direccion = $direccion;
    }
 }

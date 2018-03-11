@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Cliente } from '../../../entidades/CRUD/Cliente';
-import { ClienteService } from './cliente.service';
+import { Genero } from './../../../entidades/CRUD/Genero';
+import { GeneroService } from './genero.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from '../../bs-component/components';
+import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-cliente',
-   templateUrl: './cliente.component.html',
-   styleUrls: ['./cliente.component.scss']
+   selector: 'app-genero',
+   templateUrl: './genero.component.html',
+   styleUrls: ['./genero.component.scss']
 })
 
-export class ClienteComponent implements OnInit {
+export class GeneroComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: Cliente[];
-   entidadSeleccionada: Cliente;
+   entidades: Genero[];
+   entidadSeleccionada: Genero;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class ClienteComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ClienteService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: GeneroService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class ClienteComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: Cliente): boolean {
+   isValid(entidadPorEvaluar: Genero): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class ClienteComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): Cliente {
-      const nuevoCliente = new Cliente();
-      nuevoCliente.id = 0;
-      return nuevoCliente;
+   crearEntidad(): Genero {
+      const nuevoGenero = new Genero();
+      nuevoGenero.id = 0;
+      return nuevoGenero;
    }
 
-   add(entidadNueva: Cliente): void {
+   add(entidadNueva: Genero): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class ClienteComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: Cliente): void {
+   update(entidadParaActualizar: Genero): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class ClienteComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Cliente): void {
+   delete(entidadParaBorrar: Genero): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class ClienteComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Cliente[0];
+      this.entidades = Genero[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class ClienteComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: Cliente): void {
+   onSelect(entidadActual: Genero): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

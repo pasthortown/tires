@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { IndiceVelocidad } from '../../../entidades/CRUD/IndiceVelocidad';
+import { IndiceVelocidad } from './../../../entidades/CRUD/IndiceVelocidad';
 
 @Injectable()
 

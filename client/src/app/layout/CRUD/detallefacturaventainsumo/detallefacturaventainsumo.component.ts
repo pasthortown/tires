@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { DetalleFacturaVentaInsumo } from '../../../entidades/CRUD/DetalleFacturaVentaInsumo';
+import { DetalleFacturaVentaInsumo } from './../../../entidades/CRUD/DetalleFacturaVentaInsumo';
 import { DetalleFacturaVentaInsumoService } from './detallefacturaventainsumo.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from '../../bs-component/components';
+import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 

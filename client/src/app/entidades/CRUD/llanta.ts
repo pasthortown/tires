@@ -14,8 +14,8 @@ export class llanta {
    DOT: string;
    limiteCarga: string;
    idFabricante: number;
-   idPaisOrigen: number;
+   idUbicacionPais: number;
    idCaracteristicaTerreno: number;
    idTipoUso: number;
-   idTipoLabrado: number;
+   labrado: string;
 }
