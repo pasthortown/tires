@@ -11,7 +11,7 @@ import { BienesService } from './bienes.service';
    imports: [
       CommonModule,
       FormsModule,
-      BienesRoutingModule
+      BienesRoutingModule,
    ],
    providers: [BienesService,
                ProveedorService],
