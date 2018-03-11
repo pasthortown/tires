@@ -1,3 +1,4 @@
+USE llantas;
 INSERT INTO IndiceCarga (id, capacidad) VALUES (65,290);
 INSERT INTO IndiceCarga (id, capacidad) VALUES (66,300);
 INSERT INTO IndiceCarga (id, capacidad) VALUES (67,307);
