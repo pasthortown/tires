@@ -9,6 +9,9 @@
         <a [routerLink]="['/registrodatospersonales']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-address-card-o"></i>&nbsp;{{ 'Register Personal Information' | translate }}
         </a>
+        <a [routerLink]="['/vehiculo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-car"></i>&nbsp;{{ 'Register Vehicles' | translate }}
+        </a>
         <a [routerLink]="['/sucursal']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-cubes"></i>&nbsp;{{ 'Our Branches' | translate }}
         </a>
@@ -62,6 +65,11 @@
                     <li>
                         <a [routerLink]="['/tipouso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fire"></i>&nbsp;{{ 'Type of Use' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/marca']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="	fa fa-registered"></i>&nbsp;{{ 'Vehicle Brand' | translate }}
                         </a>
                     </li>
                     <li>

@@ -5,9 +5,9 @@ class Controlador_vehiculo extends Controlador_Base
 {
    function crear($args)
    {
-      $vehiculo = new Vehiculo($args["id"],$args["placa"],$args["numeroMotor"],$args["numeroChasis"],$args["marca"],$args["modelo"],$args["idTipoVehiculo"]);
-      $sql = "INSERT INTO Vehiculo (placa,numeroMotor,numeroChasis,marca,modelo,idTipoVehiculo) VALUES (?,?,?,?,?,?);";
-      $parametros = array($vehiculo->placa,$vehiculo->numeroMotor,$vehiculo->numeroChasis,$vehiculo->marca,$vehiculo->modelo,$vehiculo->idTipoVehiculo);
+      $vehiculo = new Vehiculo($args["id"],$args["placa"],$args["numeroMotor"],$args["numeroChasis"],$args["idMarca"],$args["modelo"],$args["idTipoVehiculo"]);
+      $sql = "INSERT INTO Vehiculo (placa,numeroMotor,numeroChasis,idMarca,modelo,idTipoVehiculo) VALUES (?,?,?,?,?,?);";
+      $parametros = array($vehiculo->placa,$vehiculo->numeroMotor,$vehiculo->numeroChasis,$vehiculo->idMarca,$vehiculo->modelo,$vehiculo->idTipoVehiculo);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_vehiculo extends Controlador_Base
 
    function actualizar($args)
    {
-      $vehiculo = new Vehiculo($args["id"],$args["placa"],$args["numeroMotor"],$args["numeroChasis"],$args["marca"],$args["modelo"],$args["idTipoVehiculo"]);
-      $parametros = array($vehiculo->placa,$vehiculo->numeroMotor,$vehiculo->numeroChasis,$vehiculo->marca,$vehiculo->modelo,$vehiculo->idTipoVehiculo,$vehiculo->id);
-      $sql = "UPDATE Vehiculo SET placa = ?,numeroMotor = ?,numeroChasis = ?,marca = ?,modelo = ?,idTipoVehiculo = ? WHERE id = ?;";
+      $vehiculo = new Vehiculo($args["id"],$args["placa"],$args["numeroMotor"],$args["numeroChasis"],$args["idMarca"],$args["modelo"],$args["idTipoVehiculo"]);
+      $parametros = array($vehiculo->placa,$vehiculo->numeroMotor,$vehiculo->numeroChasis,$vehiculo->idMarca,$vehiculo->modelo,$vehiculo->idTipoVehiculo,$vehiculo->id);
+      $sql = "UPDATE Vehiculo SET placa = ?,numeroMotor = ?,numeroChasis = ?,idMarca = ?,modelo = ?,idTipoVehiculo = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -46,10 +46,10 @@ class Controlador_vehiculo extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Vehiculo;";
+         $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id ORDER BY Marca, placa ASC;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Vehiculo WHERE id = ?;";
+         $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_vehiculo extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Vehiculo LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id ORDER BY Marca, placa ASC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_vehiculo extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Vehiculo WHERE $nombreColumna = ?;";
+            $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Vehiculo WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id ORDER BY Marca, placa ASC WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Vehiculo WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id ORDER BY Marca, placa ASC WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Vehiculo WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT Vehiculo.*, Marca.descripcion as 'Marca', TipoVehiculo.descripcion as 'TipoVehiculo' FROM Vehiculo INNER JOIN Marca ON Vehiculo.idMarca = Marca.id INNER JOIN TipoVehiculo ON Vehiculo.idTipoVehiculo = TipoVehiculo.id ORDER BY Marca, placa ASC WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

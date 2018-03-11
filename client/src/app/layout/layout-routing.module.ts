@@ -44,6 +44,8 @@ const routes: Routes = [
             { path: 'vehiculo', loadChildren: './CRUD/vehiculo/vehiculo.module#VehiculoModule' },
             { path: 'llanta', loadChildren: './CRUD/llanta/llanta.module#LlantaModule' },
             { path: 'cargo', loadChildren: './CRUD/cargo/cargo.module#CargoModule' },
+            { path: 'bienes', loadChildren: './CRUD/bienes/bienes.module#BienesModule' },
+            { path: 'marca', loadChildren: './CRUD/marca/marca.module#MarcaModule' },
             { path: 'registrodatospersonales', loadChildren: './registroDatosPersonales/registroDatosPersonales.module#RegistroDatosPersonalesModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

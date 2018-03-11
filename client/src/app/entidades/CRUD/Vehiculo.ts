@@ -3,7 +3,7 @@ export class Vehiculo {
    placa: string;
    numeroMotor: string;
    numeroChasis: string;
-   marca: string;
+   idMarca: number;
    modelo: string;
    idTipoVehiculo: number;
 }

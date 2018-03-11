@@ -98,9 +98,25 @@ CREATE TABLE Vehiculo (
     placa VARCHAR(20) NULL,
     numeroMotor VARCHAR(200) NULL,
     numeroChasis VARCHAR(200) NULL,
-    marca VARCHAR(200) NULL,
+    idMarca INT NULL,
     modelo VARCHAR(200) NULL,
     idTipoVehiculo INT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Bienes (
+    id INT NOT NULL AUTO_INCREMENT,
+    codigo VARCHAR(100) NULL,
+    descripcion VARCHAR(200) NULL,
+    fechaCompra DATE NULL,
+    precioCompra DOUBLE NULL,
+    idProveedor INT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Marca (
+    id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(500) NULL,
     PRIMARY KEY (id)
 );
 

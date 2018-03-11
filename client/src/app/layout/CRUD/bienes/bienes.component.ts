@@ -1,39 +1,32 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Vehiculo } from '../../../entidades/CRUD/Vehiculo';
-import { VehiculoService } from './vehiculo.service';
+import { Bienes } from '../../../entidades/CRUD/Bienes';
+import { BienesService } from './bienes.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
-import { TipoVehiculo } from './../../../entidades/CRUD/TipoVehiculo';
-import { Marca } from './../../../entidades/CRUD/Marca';
-import { MarcaService } from './../marca/marca.service';
-import { TipoVehiculoService } from './../tipovehiculo/tipovehiculo.service';
-
 @Component({
-   selector: 'app-vehiculo',
-   templateUrl: './vehiculo.component.html',
-   styleUrls: ['./vehiculo.component.scss']
+   selector: 'app-bienes',
+   templateUrl: './bienes.component.html',
+   styleUrls: ['./bienes.component.scss']
 })
 
-export class VehiculoComponent implements OnInit {
+export class BienesComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: Vehiculo[];
-   entidadSeleccionada: Vehiculo;
+   entidades: Bienes[];
+   entidadSeleccionada: Bienes;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   marcas: Marca[];
-   tiposVehiculo: TipoVehiculo[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: VehiculoService, private marcaService: MarcaService, private tipoVehiculoService: TipoVehiculoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: BienesService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -119,7 +112,7 @@ export class VehiculoComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: Vehiculo): boolean {
+   isValid(entidadPorEvaluar: Bienes): boolean {
       return true;
    }
 
@@ -133,13 +126,13 @@ export class VehiculoComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): Vehiculo {
-      const nuevoVehiculo = new Vehiculo();
-      nuevoVehiculo.id = 0;
-      return nuevoVehiculo;
+   crearEntidad(): Bienes {
+      const nuevoBienes = new Bienes();
+      nuevoBienes.id = 0;
+      return nuevoBienes;
    }
 
-   add(entidadNueva: Vehiculo): void {
+   add(entidadNueva: Bienes): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -154,7 +147,7 @@ export class VehiculoComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: Vehiculo): void {
+   update(entidadParaActualizar: Bienes): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -169,7 +162,7 @@ export class VehiculoComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Vehiculo): void {
+   delete(entidadParaBorrar: Bienes): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -187,7 +180,7 @@ export class VehiculoComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Vehiculo[0];
+      this.entidades = Bienes[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -218,34 +211,10 @@ export class VehiculoComponent implements OnInit {
    ngOnInit() {
       this.paginaActual=1;
       this.registrosPorPagina = 5;
-      this.getMarcas();
-      this.getTiposVehiculo();
       this.refresh();
    }
 
-   onSelect(entidadActual: Vehiculo): void {
+   onSelect(entidadActual: Bienes): void {
       this.entidadSeleccionada = entidadActual;
-   }
-
-   getMarcas(): void {
-      this.marcas = [];
-      this.busy = this.marcaService.getAll()
-      .then(respuesta => {
-         this.marcas = respuesta;
-      })
-      .catch(error => {
-         console.log(error);
-      });
-   }
-
-   getTiposVehiculo(): void {
-      this.tiposVehiculo = [];
-      this.busy = this.tipoVehiculoService.getAll()
-      .then(respuesta => {
-         this.tiposVehiculo = respuesta;
-      })
-      .catch(error => {
-         console.log(error);
-      });
    }
 }

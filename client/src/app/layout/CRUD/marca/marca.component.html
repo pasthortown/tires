@@ -1,7 +1,7 @@
-<div class="col-12">
+<div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Registro de Vehículos</h2>
+         <h2 style="margin-top:0px">Catálogo de Marcas de Vehículos</h2>
       </div>
    </div>
    <div class="row">
@@ -33,32 +33,12 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Placa</strong>
+                        <strong>Identificador</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Código de Motor</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Código de Chasis</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Marca</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Modelo</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Tipo de Vehículo</strong>
+                        <strong>Descripción</strong>
                      </span>
                   </th>
                </tr>
@@ -68,12 +48,8 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.placa}}</td>
-                  <td>{{actual.numeroMotor}}</td>
-                  <td>{{actual.numeroChasis}}</td>
-                  <td>{{actual.Marca}}</td>
-                  <td>{{actual.modelo}}</td>
-                  <td>{{actual.TipoVehiculo}}</td>
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.descripcion}}</td>
                </tr>
             </tbody>
          </table>
@@ -102,7 +78,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.placa | uppercase}}
+               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -121,45 +97,9 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="placa" class="col-sm-4 col-form-label">Placa</label>
+            <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="placa" name="placa" placeholder="Placa" [(ngModel)]="entidadSeleccionada.placa">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="numeroMotor" class="col-sm-4 col-form-label">Código de Motor</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="numeroMotor" name="numeroMotor" placeholder="Código de Motor" [(ngModel)]="entidadSeleccionada.numeroMotor">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="numeroChasis" class="col-sm-4 col-form-label">Código de Chasis</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="numeroChasis" name="numeroChasis" placeholder="Código de Chasis" [(ngModel)]="entidadSeleccionada.numeroChasis">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idMarca" class="col-sm-4 col-form-label">Marca</label>
-            <div class="col-8">
-                <select class="form-control" id="idMarca" name="idMarca" [(ngModel)]="entidadSeleccionada.idMarca">
-                    <option value="0" disabled selected>Seleccione...</option>
-                    <option *ngFor="let marca of marcas" value={{marca.id}}>{{marca.descripcion}}</option>
-                </select>
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Modelo" [(ngModel)]="entidadSeleccionada.modelo">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idTipoVehiculo" class="col-sm-4 col-form-label">Tipo de Vehículo</label>
-            <div class="col-8">
-                <select class="form-control" id="idTipoVehiculo" name="idTipoVehiculo" [(ngModel)]="entidadSeleccionada.idTipoVehiculo">
-                    <option value="0" disabled selected>Seleccione...</option>
-                    <option *ngFor="let tipoVehiculo of tiposVehiculo" value={{tipoVehiculo.id}}>{{tipoVehiculo.descripcion}}</option>
-                </select>
+              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
             </div>
          </div>
          </form>
