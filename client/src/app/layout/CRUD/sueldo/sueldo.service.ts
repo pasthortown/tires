@@ -4,13 +4,13 @@ import { environment } from '../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Bienes } from '../../entidades/CRUD/Bienes';
+import { Sueldo } from '../../entidades/CRUD/Sueldo';
 
 @Injectable()
 
-export class BienesService {
+export class SueldoService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = environment.apiUrl + 'bienes';
+   private urlBase = environment.apiUrl + 'sueldo';
 
    constructor(private http: Http) {
    }
@@ -19,38 +19,38 @@ export class BienesService {
        return this.urlBase;
    }
 
-   getAll(): Promise<Bienes[]> {
-      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Bienes[]).catch(this.handleError);
+   getAll(): Promise<Sueldo[]> {
+      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Sueldo[]).catch(this.handleError);
    }
 
-   getPagina(pagina: number, tamanoPagina: number): Promise<Bienes[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Bienes[]).catch(this.handleError);
+   getPagina(pagina: number, tamanoPagina: number): Promise<Sueldo[]> {
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Sueldo[]).catch(this.handleError);
    }
 
-   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<Bienes[]> {
-      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as Bienes[]).catch(this.handleError);
+   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<Sueldo[]> {
+      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as Sueldo[]).catch(this.handleError);
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<any> {
       return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   get(id: number): Promise<Bienes> {
+   get(id: number): Promise<Sueldo> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>(response.json() as Bienes[])[0]).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as Sueldo[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Bienes).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as Sueldo).catch(this.handleError);
    }
 
-   create(entidadTransporte: Bienes): Promise<boolean> {
+   create(entidadTransporte: Sueldo): Promise<boolean> {
       const url = `${this.urlBase+'/crear'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   update(entidadTransporte: Bienes): Promise<boolean> {
+   update(entidadTransporte: Sueldo): Promise<boolean> {
       const url = `${this.urlBase+'/actualizar'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }

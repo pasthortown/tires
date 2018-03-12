@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Bienes } from '../../entidades/CRUD/Bienes';
-import { BienesService } from './bienes.service';
+import { Contrato } from '../../entidades/CRUD/Contrato';
+import { ContratoService } from './contrato.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from 'app/layout/bs-component/components';
@@ -9,16 +9,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-bienes',
-   templateUrl: './bienes.component.html',
-   styleUrls: ['./bienes.component.scss']
+   selector: 'app-contrato',
+   templateUrl: './contrato.component.html',
+   styleUrls: ['./contrato.component.scss']
 })
 
-export class BienesComponent implements OnInit {
+export class ContratoComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: Bienes[];
-   entidadSeleccionada: Bienes;
+   entidades: Contrato[];
+   entidadSeleccionada: Contrato;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class BienesComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: BienesService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ContratoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class BienesComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: Bienes): boolean {
+   isValid(entidadPorEvaluar: Contrato): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class BienesComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): Bienes {
-      const nuevoBienes = new Bienes();
-      nuevoBienes.id = 0;
-      return nuevoBienes;
+   crearEntidad(): Contrato {
+      const nuevoContrato = new Contrato();
+      nuevoContrato.id = 0;
+      return nuevoContrato;
    }
 
-   add(entidadNueva: Bienes): void {
+   add(entidadNueva: Contrato): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class BienesComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: Bienes): void {
+   update(entidadParaActualizar: Contrato): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class BienesComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Bienes): void {
+   delete(entidadParaBorrar: Contrato): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class BienesComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Bienes[0];
+      this.entidades = Contrato[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class BienesComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: Bienes): void {
+   onSelect(entidadActual: Contrato): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

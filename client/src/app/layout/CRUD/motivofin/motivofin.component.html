@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Bienes</h2>
+         <h2 style="margin-top:0px">Catálogo de MotivoFin</h2>
       </div>
    </div>
    <div class="row">
@@ -38,32 +38,7 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>codigo</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
                         <strong>descripcion</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>fechaCompra</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>precioCompra</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idProveedor</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>idFacturaCompra</strong>
                      </span>
                   </th>
                </tr>
@@ -74,12 +49,7 @@
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
                   <td>{{actual.id}}</td>
-                  <td>{{actual.codigo}}</td>
                   <td>{{actual.descripcion}}</td>
-                  <td>{{actual.fechaCompra}}</td>
-                  <td>{{actual.precioCompra}}</td>
-                  <td>{{actual.idProveedor}}</td>
-                  <td>{{actual.idFacturaCompra}}</td>
                </tr>
             </tbody>
          </table>
@@ -127,39 +97,9 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="codigo" class="col-sm-4 col-form-label">codigo</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" [(ngModel)]="entidadSeleccionada.codigo">
-            </div>
-         </div>
-         <div class="form-group row">
             <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="fechaCompra" class="col-sm-4 col-form-label">fechaCompra</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaCompra" name="fechaCompra" placeholder="fechaCompra" [(ngModel)]="entidadSeleccionada.fechaCompra">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="precioCompra" class="col-sm-4 col-form-label">precioCompra</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="precioCompra" name="precioCompra" placeholder="precioCompra" [(ngModel)]="entidadSeleccionada.precioCompra">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idProveedor" class="col-sm-4 col-form-label">idProveedor</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idProveedor" name="idProveedor" placeholder="idProveedor" [(ngModel)]="entidadSeleccionada.idProveedor">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="idFacturaCompra" class="col-sm-4 col-form-label">idFacturaCompra</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idFacturaCompra" name="idFacturaCompra" placeholder="idFacturaCompra" [(ngModel)]="entidadSeleccionada.idFacturaCompra">
             </div>
          </div>
          </form>

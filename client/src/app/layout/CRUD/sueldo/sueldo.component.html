@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Bienes</h2>
+         <h2 style="margin-top:0px">Catálogo de Sueldo</h2>
       </div>
    </div>
    <div class="row">
@@ -38,32 +38,42 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>codigo</strong>
+                        <strong>idContrato</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>descripcion</strong>
+                        <strong>montoBruto</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>fechaCompra</strong>
+                        <strong>fecha</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>precioCompra</strong>
+                        <strong>idBaseIESS</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idProveedor</strong>
+                        <strong>porcentajeIESSEmpleado</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idFacturaCompra</strong>
+                        <strong>porcentajeIESSEmpleador</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>montoPagoPrimeraQuincena</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>montoPagoSegundaQuincena</strong>
                      </span>
                   </th>
                </tr>
@@ -74,12 +84,14 @@
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
                   <td>{{actual.id}}</td>
-                  <td>{{actual.codigo}}</td>
-                  <td>{{actual.descripcion}}</td>
-                  <td>{{actual.fechaCompra}}</td>
-                  <td>{{actual.precioCompra}}</td>
-                  <td>{{actual.idProveedor}}</td>
-                  <td>{{actual.idFacturaCompra}}</td>
+                  <td>{{actual.idContrato}}</td>
+                  <td>{{actual.montoBruto}}</td>
+                  <td>{{actual.fecha}}</td>
+                  <td>{{actual.idBaseIESS}}</td>
+                  <td>{{actual.porcentajeIESSEmpleado}}</td>
+                  <td>{{actual.porcentajeIESSEmpleador}}</td>
+                  <td>{{actual.montoPagoPrimeraQuincena}}</td>
+                  <td>{{actual.montoPagoSegundaQuincena}}</td>
                </tr>
             </tbody>
          </table>
@@ -127,39 +139,51 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="codigo" class="col-sm-4 col-form-label">codigo</label>
+            <label for="idContrato" class="col-sm-4 col-form-label">idContrato</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" [(ngModel)]="entidadSeleccionada.codigo">
+              <input type="text" class="form-control" id="idContrato" name="idContrato" placeholder="idContrato" [(ngModel)]="entidadSeleccionada.idContrato">
             </div>
          </div>
          <div class="form-group row">
-            <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
+            <label for="montoBruto" class="col-sm-4 col-form-label">montoBruto</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
+              <input type="text" class="form-control" id="montoBruto" name="montoBruto" placeholder="montoBruto" [(ngModel)]="entidadSeleccionada.montoBruto">
             </div>
          </div>
          <div class="form-group row">
-            <label for="fechaCompra" class="col-sm-4 col-form-label">fechaCompra</label>
+            <label for="fecha" class="col-sm-4 col-form-label">fecha</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaCompra" name="fechaCompra" placeholder="fechaCompra" [(ngModel)]="entidadSeleccionada.fechaCompra">
+              <input type="text" class="form-control" id="fecha" name="fecha" placeholder="fecha" [(ngModel)]="entidadSeleccionada.fecha">
             </div>
          </div>
          <div class="form-group row">
-            <label for="precioCompra" class="col-sm-4 col-form-label">precioCompra</label>
+            <label for="idBaseIESS" class="col-sm-4 col-form-label">idBaseIESS</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="precioCompra" name="precioCompra" placeholder="precioCompra" [(ngModel)]="entidadSeleccionada.precioCompra">
+              <input type="text" class="form-control" id="idBaseIESS" name="idBaseIESS" placeholder="idBaseIESS" [(ngModel)]="entidadSeleccionada.idBaseIESS">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idProveedor" class="col-sm-4 col-form-label">idProveedor</label>
+            <label for="porcentajeIESSEmpleado" class="col-sm-4 col-form-label">porcentajeIESSEmpleado</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idProveedor" name="idProveedor" placeholder="idProveedor" [(ngModel)]="entidadSeleccionada.idProveedor">
+              <input type="text" class="form-control" id="porcentajeIESSEmpleado" name="porcentajeIESSEmpleado" placeholder="porcentajeIESSEmpleado" [(ngModel)]="entidadSeleccionada.porcentajeIESSEmpleado">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idFacturaCompra" class="col-sm-4 col-form-label">idFacturaCompra</label>
+            <label for="porcentajeIESSEmpleador" class="col-sm-4 col-form-label">porcentajeIESSEmpleador</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idFacturaCompra" name="idFacturaCompra" placeholder="idFacturaCompra" [(ngModel)]="entidadSeleccionada.idFacturaCompra">
+              <input type="text" class="form-control" id="porcentajeIESSEmpleador" name="porcentajeIESSEmpleador" placeholder="porcentajeIESSEmpleador" [(ngModel)]="entidadSeleccionada.porcentajeIESSEmpleador">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="montoPagoPrimeraQuincena" class="col-sm-4 col-form-label">montoPagoPrimeraQuincena</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="montoPagoPrimeraQuincena" name="montoPagoPrimeraQuincena" placeholder="montoPagoPrimeraQuincena" [(ngModel)]="entidadSeleccionada.montoPagoPrimeraQuincena">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="montoPagoSegundaQuincena" class="col-sm-4 col-form-label">montoPagoSegundaQuincena</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="montoPagoSegundaQuincena" name="montoPagoSegundaQuincena" placeholder="montoPagoSegundaQuincena" [(ngModel)]="entidadSeleccionada.montoPagoSegundaQuincena">
             </div>
          </div>
          </form>

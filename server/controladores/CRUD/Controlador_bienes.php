@@ -5,12 +5,12 @@ class Controlador_bienes extends Controlador_Base
 {
    function crear($args)
    {
-      $bienes = new Bienes($args["id"],$args["codigo"],$args["descripcion"],$args["fechaCompra"],$args["precioCompra"],$args["idProveedor"]);
-      $sql = "INSERT INTO Bienes (codigo,descripcion,fechaCompra,precioCompra,idProveedor) VALUES (?,?,?,?,?);";
+      $bienes = new Bienes($args["id"],$args["codigo"],$args["descripcion"],$args["fechaCompra"],$args["precioCompra"],$args["idProveedor"],$args["idFacturaCompra"]);
+      $sql = "INSERT INTO Bienes (codigo,descripcion,fechaCompra,precioCompra,idProveedor,idFacturaCompra) VALUES (?,?,?,?,?,?);";
       $fechaCompraNoSQLTime = strtotime($bienes->fechaCompra);
       $fechaCompraSQLTime = date("Y-m-d", $fechaCompraNoSQLTime);
       $bienes->fechaCompra = $fechaCompraSQLTime;
-      $parametros = array($bienes->codigo,$bienes->descripcion,$bienes->fechaCompra,$bienes->precioCompra,$bienes->idProveedor);
+      $parametros = array($bienes->codigo,$bienes->descripcion,$bienes->fechaCompra,$bienes->precioCompra,$bienes->idProveedor,$bienes->idFacturaCompra);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -21,9 +21,9 @@ class Controlador_bienes extends Controlador_Base
 
    function actualizar($args)
    {
-      $bienes = new Bienes($args["id"],$args["codigo"],$args["descripcion"],$args["fechaCompra"],$args["precioCompra"],$args["idProveedor"]);
-      $parametros = array($bienes->codigo,$bienes->descripcion,$bienes->fechaCompra,$bienes->precioCompra,$bienes->idProveedor,$bienes->id);
-      $sql = "UPDATE Bienes SET codigo = ?,descripcion = ?,fechaCompra = ?,precioCompra = ?,idProveedor = ? WHERE id = ?;";
+      $bienes = new Bienes($args["id"],$args["codigo"],$args["descripcion"],$args["fechaCompra"],$args["precioCompra"],$args["idProveedor"],$args["idFacturaCompra"]);
+      $parametros = array($bienes->codigo,$bienes->descripcion,$bienes->fechaCompra,$bienes->precioCompra,$bienes->idProveedor,$bienes->idFacturaCompra,$bienes->id);
+      $sql = "UPDATE Bienes SET codigo = ?,descripcion = ?,fechaCompra = ?,precioCompra = ?,idProveedor = ?,idFacturaCompra = ? WHERE id = ?;";
       $fechaCompraNoSQLTime = strtotime($bienes->fechaCompra);
       $fechaCompraSQLTime = date("Y-m-d", $fechaCompraNoSQLTime);
       $bienes->fechaCompra = $fechaCompraSQLTime;

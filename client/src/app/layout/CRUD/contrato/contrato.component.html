@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Bienes</h2>
+         <h2 style="margin-top:0px">Catálogo de Contrato</h2>
       </div>
    </div>
    <div class="row">
@@ -43,27 +43,27 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>descripcion</strong>
+                        <strong>idCargo</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>fechaCompra</strong>
+                        <strong>idPersona</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>precioCompra</strong>
+                        <strong>fechaInicio</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idProveedor</strong>
+                        <strong>fechaFin</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idFacturaCompra</strong>
+                        <strong>idMotivoFin</strong>
                      </span>
                   </th>
                </tr>
@@ -75,11 +75,11 @@
                   </td>
                   <td>{{actual.id}}</td>
                   <td>{{actual.codigo}}</td>
-                  <td>{{actual.descripcion}}</td>
-                  <td>{{actual.fechaCompra}}</td>
-                  <td>{{actual.precioCompra}}</td>
-                  <td>{{actual.idProveedor}}</td>
-                  <td>{{actual.idFacturaCompra}}</td>
+                  <td>{{actual.idCargo}}</td>
+                  <td>{{actual.idPersona}}</td>
+                  <td>{{actual.fechaInicio}}</td>
+                  <td>{{actual.fechaFin}}</td>
+                  <td>{{actual.idMotivoFin}}</td>
                </tr>
             </tbody>
          </table>
@@ -133,33 +133,33 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
+            <label for="idCargo" class="col-sm-4 col-form-label">idCargo</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
+              <input type="text" class="form-control" id="idCargo" name="idCargo" placeholder="idCargo" [(ngModel)]="entidadSeleccionada.idCargo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="fechaCompra" class="col-sm-4 col-form-label">fechaCompra</label>
+            <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaCompra" name="fechaCompra" placeholder="fechaCompra" [(ngModel)]="entidadSeleccionada.fechaCompra">
+              <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
             </div>
          </div>
          <div class="form-group row">
-            <label for="precioCompra" class="col-sm-4 col-form-label">precioCompra</label>
+            <label for="fechaInicio" class="col-sm-4 col-form-label">fechaInicio</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="precioCompra" name="precioCompra" placeholder="precioCompra" [(ngModel)]="entidadSeleccionada.precioCompra">
+              <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" placeholder="fechaInicio" [(ngModel)]="entidadSeleccionada.fechaInicio">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idProveedor" class="col-sm-4 col-form-label">idProveedor</label>
+            <label for="fechaFin" class="col-sm-4 col-form-label">fechaFin</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idProveedor" name="idProveedor" placeholder="idProveedor" [(ngModel)]="entidadSeleccionada.idProveedor">
+              <input type="text" class="form-control" id="fechaFin" name="fechaFin" placeholder="fechaFin" [(ngModel)]="entidadSeleccionada.fechaFin">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idFacturaCompra" class="col-sm-4 col-form-label">idFacturaCompra</label>
+            <label for="idMotivoFin" class="col-sm-4 col-form-label">idMotivoFin</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idFacturaCompra" name="idFacturaCompra" placeholder="idFacturaCompra" [(ngModel)]="entidadSeleccionada.idFacturaCompra">
+              <input type="text" class="form-control" id="idMotivoFin" name="idMotivoFin" placeholder="idMotivoFin" [(ngModel)]="entidadSeleccionada.idMotivoFin">
             </div>
          </div>
          </form>

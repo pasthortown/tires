@@ -5,4 +5,5 @@ export class Bienes {
    fechaCompra: Date;
    precioCompra: number;
    idProveedor: number;
+   idFacturaCompra: number;
 }
