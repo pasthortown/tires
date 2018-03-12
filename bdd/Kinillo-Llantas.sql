@@ -111,6 +111,7 @@ CREATE TABLE Bienes (
     fechaCompra DATE NULL,
     precioCompra DOUBLE NULL,
     idProveedor INT NULL,
+    idFacturaCompra INT NULL,
     PRIMARY KEY (id)
 );
 
@@ -358,5 +359,39 @@ CREATE TABLE Sucursal (
     idUbicacionCanton VARCHAR(100) NULL,
     idUbicacionParroquia VARCHAR(100) NULL,
     direccion VARCHAR(500) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Sueldo (
+    id INT NOT NULL AUTO_INCREMENT,
+    idContrato INT NULL,
+    montoBruto DOUBLE NULL,
+    fecha DATE NULL,
+    idBaseIESS INT NULL,
+    porcentajeIESSEmpleado DOUBLE NULL,
+    porcentajeIESSEmpleador DOUBLE NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Contrato (
+    id INT NOT NULL AUTO_INCREMENT,
+    codigo VARCHAR(100) NULL,
+    idCargo INT NULL,
+    fechaInicio DATE NULL,
+    fechaFin DATE NULL,
+    idMotivoFin INT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE MotivoFin (
+    id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(100) NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE BaseIESS (
+    id INT NOT NULL AUTO_INCREMENT,
+    descripcion VARCHAR(100) NULL,
+    monto DOUBLE NULL,
     PRIMARY KEY (id)
 );
