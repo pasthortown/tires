@@ -370,6 +370,8 @@ CREATE TABLE Sueldo (
     idBaseIESS INT NULL,
     porcentajeIESSEmpleado DOUBLE NULL,
     porcentajeIESSEmpleador DOUBLE NULL,
+    montoPagoPrimeraQuincena DOUBLE NULL,
+    montoPagoSegundaQuincena DOUBLE NULL,
     PRIMARY KEY (id)
 );
 
@@ -377,6 +379,7 @@ CREATE TABLE Contrato (
     id INT NOT NULL AUTO_INCREMENT,
     codigo VARCHAR(100) NULL,
     idCargo INT NULL,
+    idPersona INT NULL,
     fechaInicio DATE NULL,
     fechaFin DATE NULL,
     idMotivoFin INT NULL,
