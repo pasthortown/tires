@@ -1,10 +1,13 @@
-Registrar Neumatico (Venta / Compra)
-Registrar Producto (Venta / Compra)
-Registrar Servicio (Venta / Compra)
-Mostrar Stock Neumaticos
-Mostrar Catalogo Productos
-Mostrar Stock Productos
-Mostrar Catalogo Servicios
-Mostrar Stock Servicios
-Mejorar vista Cargo por las Funciones
-FACTURAR
+Registrar Factura Compra
+Registrar Factura Venta
+Mostrar STOCK Productos, Neumaticos
+Mostrar Inventario de Activos
+Mostrar Catalogo Productos, Neumaticos, Servicios
+
+REPORTES
+Mostrar Resumen Gastos VS Ventas por Productos, Neumaticos o Servicios
+Total Año presente
+Total desde apertura
+Mensual año presente
+Promedio mensual historico
+Anual
