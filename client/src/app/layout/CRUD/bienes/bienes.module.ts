@@ -6,13 +6,18 @@ import { BienesRoutingModule } from './bienes-routing.module';
 import { BienesComponent } from './bienes.component';
 import { BienesService } from './bienes.service';
 
+import { ProveedorService } from '../proveedor/proveedor.service';
+import { CabeceraFacturaCompraService } from '../cabecerafacturacompra/cabecerafacturacompra.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       BienesRoutingModule
    ],
-   providers: [BienesService],
+   providers: [BienesService,
+            ProveedorService,
+            CabeceraFacturaCompraService],
    declarations: [BienesComponent],
 })
 export class BienesModule { }
