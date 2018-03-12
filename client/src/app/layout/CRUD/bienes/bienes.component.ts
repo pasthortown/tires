@@ -1,4 +1,3 @@
-import { CabeceraFacturaCompraService } from './../cabecerafacturacompra/cabecerafacturacompra.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Bienes } from '../../../entidades/CRUD/Bienes';
